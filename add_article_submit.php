@@ -1,17 +1,21 @@
 <?php
 $input = $_POST;
-$file = './articles.json';
-$data = array();
-if (file_exists($file)) {
-    $tmp = file_get_contents($file); //读取文件，变成字符串
-    if (!empty($tmp)) {
-        $data = json_decode($tmp, true); //json解码成array
-    }
-}
-$data[] = $input;
-file_put_contents($file, json_encode($data)); //把字符串保存到文件
+$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=reader;charset=utf8';
+$user = 'root';
+$password = '1';
+$db = new PDO($dsn, $user, $password); //连接数据库
 
-$d = array(); //d 是 data的意思，后续会用到
+$sql = 'INSERT INTO `articles` (`author`, `title`, `content`) VALUES (' . '\'' . $input['author'] . '\',\'' . $input['title'] . '\',\'' . $input['content'] . '\');';
+
+$stmt = $db->query($sql); //执行SQL
+$id = $db->lastInsertId(); //获得自增id
+
+if (!empty($id)) {
+    $notice = '保存成功';
+} else {
+    $notice = '出错了';
+}
+$d = array();
 $d['notice'] = array(
     'msg' => '保存成功',
 );

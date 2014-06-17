@@ -1,13 +1,15 @@
 <?php
-$articles = array();
-$file = './articles.json';
-if (file_exists($file)) {
-    $tmp = file_get_contents($file);
-    if (!empty($tmp)) {
-        $articles = json_decode($tmp, true);
-    }
-}
+$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=reader;charset=utf8';
+$user = 'root';
+$password = '1';
+$db = new PDO($dsn, $user, $password);
 
-$d = array(); //d 是 data的意思，后续会用到
+$sql = 'SELECT `id`, `author`, `title`, `content` FROM `articles` LIMIT 10';
+
+$stmt = $db->query($sql);
+$stmt->setFetchMode(PDO::FETCH_ASSOC);
+$articles = $stmt->fetchAll();
+
+$d = array();
 $d['articles'] = $articles;
 require_once __DIR__ . '/index.html';
