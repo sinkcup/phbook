@@ -17,6 +17,6 @@ if (!empty($id)) {
 }
 $d = array();
 $d['notice'] = array(
-    'msg' => '保存成功',
+    'msg' => $notice,
 );
 require_once __DIR__ . '/notice.html';
