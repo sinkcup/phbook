@@ -5,7 +5,7 @@ if (!isset($input['id']) || empty($input['id'])) {
     $d['notice'] = array(
         'msg' => '出错了：缺少参数',
     );
-    require __DIR__ . '/notice.html';
+    require __DIR__ . '/../res/layout/notice.html';
     exit;
 }
 
@@ -23,10 +23,10 @@ if (empty($r)) {
     $d['notice'] = array(
         'msg' => '出错了：查无此文',
     );
-    require __DIR__ . '/notice.html';
+    require __DIR__ . '/../res/layout/notice.html';
     exit;
 }
 
 $d = array();
 $d['article'] = $r[0];
-require_once __DIR__ . '/get_article.html';
+require_once __DIR__ . '/../res/layout/get_article.html';

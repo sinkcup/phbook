@@ -19,4 +19,4 @@ $d = array();
 $d['notice'] = array(
     'msg' => $notice,
 );
-require_once __DIR__ . '/notice.html';
+require_once __DIR__ . '/../res/layout/notice.html';
