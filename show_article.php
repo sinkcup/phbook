@@ -12,4 +12,4 @@ if (file_exists($file)) {
 
 $d = array();
 $d['article'] = $article;
-require_once __DIR__ . '/get_article.html';
+require_once __DIR__ . '/show_article.html';
