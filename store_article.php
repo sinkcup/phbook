@@ -1,7 +1,7 @@
 <?php
 $input = $_POST;
 $file = './articles.json';
-$data = array();
+$data = [];
 if (file_exists($file)) {
     $tmp = file_get_contents($file); //读取文件，变成字符串
     if(!empty($tmp)) {
@@ -10,4 +10,4 @@ if (file_exists($file)) {
 }
 $data[] = $input;
 file_put_contents($file, json_encode($data)); //把字符串保存到文件
-echo '保存成功';
+echo '发表成功';
